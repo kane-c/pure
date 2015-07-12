@@ -126,6 +126,11 @@ prompt_pure_preprompt_render() {
 	# execution time
 	preprompt+="%F{yellow}${prompt_pure_cmd_exec_time}%f"
 
+	# virtualenv name in prompt. Requires the virtualenv plugin
+	ZSH_THEME_VIRTUALENV_PREFIX=" %F{242}"
+	ZSH_THEME_VIRTUALENV_SUFFIX="%f"
+	preprompt+=$(virtualenv_prompt_info)
+
 	# if executing through precmd, do not perform fancy terminal editing
 	if [[ "$1" == "precmd" ]]; then
 		print -P "\n${preprompt}"
